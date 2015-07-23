@@ -15,10 +15,11 @@ function unpack(source_file, target_dir) {
     console.log(result.toString('utf-8'));
     return true;
   }
-  catch() {
-    console.error(er.stack)
-    if (er.pid) console.log('%s (pid: %d) exited with status %d',
-        er.file, er.pid, er.status)
+  catch(e) {
+    console.error(e.stack)
+    console.log(e.stderr.toString('utf-8'));
+    if (e.pid) console.log('%s (pid: %d) exited with status %d',
+        e.file, e.pid, e.status)
   }
   return false;
 }
