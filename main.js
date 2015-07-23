@@ -13,11 +13,13 @@ function unpack(source_file, target_dir) {
     var result = child_process.execFileSync(exe, [
         'x', '-o' + target_dir, source_file]);
     console.log(result.toString('utf-8'));
+    return true;
   }
   catch() {
     console.error(er.stack)
     if (er.pid) console.log('%s (pid: %d) exited with status %d',
         er.file, er.pid, er.status)
   }
+  return false;
 }
 module.exports = unpack;
